@@ -1,0 +1,14 @@
+services: 
+  xmycontainer :
+    build : .
+    container_name: mycontainer
+    volumes:
+      - ./src/:/workspace/src/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $HOME/.Xauthority:/root/.Xauthority
+    environment:
+     - DISPLAY=$DISPLAY
+     - XAUTHORITY=$XAUTHORITY
+   
+    network_mode: host
+    command : fastapi run
